@@ -1,0 +1,18 @@
+{% extends 'twitter/base.html' %}
+
+{% block title %} Tweety użytkownika {% endblock %}
+
+
+{% block content %}
+<ul>
+{% for result in results %}
+    <li>
+Data: {{ result.0.creation_date }}<br>
+Treść: {{ result.0.content }} <br>
+Liczba komentarzy: {{ result.1 }}
+    </li>
+{% empty %}
+Na stronie nie ma jeszcze tweetów!
+{% endfor %}
+</ul>
+{% endblock %}

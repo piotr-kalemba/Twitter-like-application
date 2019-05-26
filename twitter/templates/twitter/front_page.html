@@ -1,0 +1,20 @@
+{% extends 'twitter/base.html' %}
+
+{% block title %} Strona główna {% endblock %}
+
+
+{% block content %}
+{% for tweet in tweets %}
+<ul>
+    <li>{{ tweet.creation_date }}</li>
+    <li><a href="{% url 'user-view' user_pk=tweet.user.pk %}">{{ tweet.user.email }}</a></li>
+    <li><a href="{% url 'tweet-view' tweet_pk=tweet.pk %}">{{ tweet }}</a></li>
+</ul>
+{% empty %}
+Na stronie nie ma jeszcze tweetów!
+{% endfor %}
+<br>
+<a href="{% url 'create-tweet' %}">
+Stwórz nowy tweet
+</a>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'twitter/base.html' %}
+
+{% block title %} Widok tweetu {% endblock %}
+
+
+{% block content %}
+<ul>
+    <li>Treść tweetu: {{ tweet.content }}</li>
+    <li>Autor tweetu: {{ tweet.user.email}}</li>
+</ul>
+<br>
+Komentarze do tweetu:
+<ol>
+{% for comment in comments %}
+    <li>{{ comment }}</li>
+    {% empty %}
+    Tweet nie ma jeszcze żadnych komentarzy.
+    {% endfor %}
+</ol>
+<br>
+Dodaj komentarz:
+<form method="POST">
+{% csrf_token %}
+  <ul>
+      {{ form.as_ul }}
+      <li><input type="submit" value="Dodaj"></li>
+  </ul>
+</form>
+{% endblock %}
