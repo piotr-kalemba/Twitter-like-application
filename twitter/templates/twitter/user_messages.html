@@ -1,0 +1,41 @@
+{% extends 'twitter/base.html' %}
+
+{% block title %} Rejstracja użytkownika {% endblock %}
+
+{% block content %}
+Użytkownik {{ user }}
+<br>
+Wiadomości otrzymane:
+<ul>
+    <li>
+        Nieprzeczytane:
+        <br>
+        <ul>
+            {% for message in unread_messages %}
+            <li>{{ message.message_from.email }}: <a href="{% url 'read-message' pk=message.pk %}">{{ message }}</a></li>
+            {% empty %}
+            Nie masz nieprzeczytanych wiadomości
+            {% endfor %}
+        </ul>
+    </li>
+    <li>
+          Przeczytane:
+        <br>
+        <ul>
+            {% for message in read_messages %}
+            <li>{{ message.message_from.email }}: <a href="{% url 'read-message' pk=message.pk %}">{{ message }}</a></li>
+            {% empty %}
+            Nie masz przeczytanych wiadomości
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+Wiadomości wysłane:
+<ul>
+{% for message in user.sent_messages.all %}
+    <li>{{ message.message_to.email }}: <a href="{% url 'read-message' pk=message.pk %}">{{ message }}</a></li>
+{% empty %}
+Użytkownik nie wysłał jeszcze żadnej wiadomości.
+{% endfor %}
+</ul>
+{% endblock %}

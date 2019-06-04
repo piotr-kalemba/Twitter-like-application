@@ -4,17 +4,29 @@
 
 
 {% block content %}
+
+Stwórz nowy tweet:
+<br>
+<form method="POST">
+{% csrf_token %}
+  <ul>
+      {{ form.as_ul }}
+  </ul>
+      <input type="submit" value="Opublikuj">
+</form>
+<br>
 {% for tweet in tweets %}
 <ul>
     <li>{{ tweet.creation_date }}</li>
-    <li><a href="{% url 'user-view' user_pk=tweet.user.pk %}">{{ tweet.user.email }}</a></li>
+    <li><a href="{% url 'user-view' pk=tweet.user.pk %}">{{ tweet.user.email }}</a></li>
     <li><a href="{% url 'tweet-view' tweet_pk=tweet.pk %}">{{ tweet }}</a></li>
 </ul>
 {% empty %}
 Na stronie nie ma jeszcze tweetów!
 {% endfor %}
 <br>
-<a href="{% url 'create-tweet' %}">
-Stwórz nowy tweet
+
+<a href="{% url 'user-messages' %}">
+    Zobacz swoje wiadomości
 </a>
 {% endblock %}

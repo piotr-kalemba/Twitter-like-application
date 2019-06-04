@@ -1,0 +1,18 @@
+{% extends 'twitter/base.html' %}
+
+{% block title %} Strona wiadomości {% endblock %}
+
+
+{% block content %}
+<ul>
+    <li>
+        Data wysłania wiadomości: {{ message.creation_date }}
+    </li>
+    <li>
+        Nadawca: {{ message.message_from.email }}
+    </li>
+    <li>
+        Treść wiadomości: {{ message.content }}
+    </li>
+</ul>
+{% endblock %}

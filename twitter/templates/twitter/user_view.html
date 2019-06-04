@@ -4,6 +4,16 @@
 
 
 {% block content %}
+{% if target_user != user %}
+<form method="POST">
+{% csrf_token %}
+  <ul>
+      {{ form }}
+      <br>
+      <input type="submit" value="Wyślij wiadomość">
+  </ul>
+</form>
+{% endif %}
 <ul>
 {% for result in results %}
     <li>
