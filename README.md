@@ -1,4 +1,4 @@
-# warsztaty_5_1
+
 Twitter-like application
 
 A) The aim of this project is to write a full and functional twitter-like application.
